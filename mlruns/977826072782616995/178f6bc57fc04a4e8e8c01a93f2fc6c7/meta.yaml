@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/977826072782616995/178f6bc57fc04a4e8e8c01a93f2fc6c7/artifacts
+end_time: 1754941821069
+entry_point_name: ''
+experiment_id: '977826072782616995'
+lifecycle_stage: active
+run_id: 178f6bc57fc04a4e8e8c01a93f2fc6c7
+run_name: resilient-kit-206
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754941814938
+status: 3
+tags: []
+user_id: gsa19

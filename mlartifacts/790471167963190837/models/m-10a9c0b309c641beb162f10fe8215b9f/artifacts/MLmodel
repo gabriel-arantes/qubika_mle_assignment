@@ -1,0 +1,33 @@
+artifact_path: mlflow-artifacts:/790471167963190837/models/m-10a9c0b309c641beb162f10fe8215b9f/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.1
+is_signature_from_type_hint: false
+mlflow_version: 3.2.0
+model_id: m-10a9c0b309c641beb162f10fe8215b9f
+model_size_bytes: 1867
+model_uuid: m-10a9c0b309c641beb162f10fe8215b9f
+prompts: null
+run_id: 0be37627bc284603aa28ff3a41dda970
+signature:
+  inputs: '[{"type": "double", "name": "Age", "required": false}, {"type": "double",
+    "name": "Annual_Income", "required": false}, {"type": "double", "name": "Credit_Score",
+    "required": false}, {"type": "double", "name": "Loan_Amount", "required": false},
+    {"type": "long", "name": "Loan_Duration_Years", "required": true}, {"type": "double",
+    "name": "Number_of_Open_Accounts", "required": false}, {"type": "long", "name":
+    "Had_Past_Default", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-08-12 14:43:00.575367'

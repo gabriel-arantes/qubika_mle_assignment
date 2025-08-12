@@ -1,0 +1,8 @@
+aliases:
+  production: '2'
+creation_timestamp: 1754941820994
+deployment_job_id: null
+deployment_job_state: null
+description: ''
+last_updated_timestamp: 1755009825915
+name: loan_approval_model

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/790471167963190837/0be37627bc284603aa28ff3a41dda970/artifacts
+end_time: 1755009787621
+entry_point_name: ''
+experiment_id: '790471167963190837'
+lifecycle_stage: active
+run_id: 0be37627bc284603aa28ff3a41dda970
+run_name: clumsy-bat-998
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1755009780252
+status: 3
+tags: []
+user_id: gsa19
