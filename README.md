@@ -75,7 +75,7 @@ This guide provides a comprehensive, step-by-step workflow to run the entire pro
 ### Phase I: Environment Setup
 
 1.  **Prerequisites:**
-    * Python 3.9+ and the `pip` package manager.
+    * Python 3.13 and the `pip` package manager.
     * Docker Desktop (or Docker Engine for Linux).
     * A Python virtual environment (e.g., `venv`, `conda`) is highly recommended to isolate dependencies.
 
@@ -114,7 +114,7 @@ This guide provides a comprehensive, step-by-step workflow to run the entire pro
     4.  If this is the first time, select "Create New Model" and name it `loan_approval_model`. Otherwise, add it as a new version to the existing model.
     5.  Navigate to the **"Models"** tab from the main sidebar.
     6.  Click on `loan_approval_model`.
-    7.  On the desired version, find the **"Aliases"** section. Click to add an alias and type `production`. Press Enter and Save. This tag now officially marks this model version as the one to be used by production services.
+    7.  **Most important step**: On the desired version, find the **"Aliases"** section. Click to add an alias and type `production`. Press Enter and Save. This tag now officially marks this model version as the one to be used by production services.
 
 ### Phase III: Deploying and Testing the API
 
@@ -127,9 +127,6 @@ This guide provides a comprehensive, step-by-step workflow to run the entire pro
 2.  **Run the Docker Container:**
     We will run the container and use an environment variable (`-e`) to tell the API how to connect to the MLflow server on the host machine.
     ```bash
-    # Stop and remove any old container to avoid name conflicts
-    docker stop loan-api-container && docker rm loan-api-container
-
     # Run the new container, linking it to the host's MLflow server
     docker run --name loan-api-container -p 8000:8000 -e MLFLOW_TRACKING_URI="[http://host.docker.internal:5000](http://host.docker.internal:5000)" loan-approval-api:latest
     ```
@@ -189,7 +186,7 @@ This guide provides a comprehensive, step-by-step workflow to run the entire pro
 * **Success Response (200 OK):**
     ```json
     {
-      "prediction": "Approved" | "Não Aprovado",
+      "prediction": "Aprovado" | "Não Aprovado",
       "prediction_code": 1 | 0
     }
     ```
@@ -207,18 +204,19 @@ This project provides a robust foundation. The following steps would further enh
 * **CI/CD Pipeline:** Automate the testing and Docker image build/push process using tools like GitHub Actions or Jenkins. For example, a new push to a `develop` branch could trigger tests, while a merge to `main` could build and push the production image to a container registry (like Docker Hub or AWS ECR).
 
 * **Data and Model Validation Notebook:** Create a `validation.ipynb` Jupyter Notebook. Its purpose would be to:
-    * Perform deep exploratory data analysis (EDA) on `dataset.csv`.
-    * Use libraries like `pandas-profiling` or `sweetviz` to automatically generate data quality reports.
+    * Validate the minimum business metrics to send the model to production.
+    * Compare the new model (challenger) with the production model (champion), if there is one.
     * Perform error analysis on model predictions (e.g., where does the model fail most?).
     * This notebook could be run as part of a CI/CD pipeline to detect breaking changes in new data.
 
 * **Enhanced Metrics and Artifact Logging:** Improve the training script to log richer information to MLflow:
-    * **Confusion Matrix:** Generate a confusion matrix plot using `matplotlib`/`seaborn` and log it as an image artifact with `mlflow.log_figure()`. This gives immediate visual insight into model performance beyond simple accuracy.
+    * **Visualizations:** Generate visualizations and log it with the model in the model registry, for istance a confusion matrix plot using `matplotlib`/`seaborn` and log it as an image artifact with `mlflow.log_figure()`. This gives immediate visual insight into model performance beyond simple accuracy.
     * **Feature Importance:** For models like Random Forest, calculate and plot feature importances, logging the resulting figure to MLflow. This helps explain model behavior.
 
 * **Dataset Versioning and Tracking:** The current setup does not version the input dataset, `dataset.csv`.
     * **Problem:** If the data changes, model performance will change, and we need to track which model was trained on which version of the data.
     * **Solution:** Integrate a data versioning tool like **DVC (Data Version Control)**. DVC works alongside Git to version large files. We could then log the DVC hash of the dataset as a parameter in our MLflow run, creating an unbreakable link between the model version and the exact data version used to train it.
+    * Going even further, this is essential to calculate data and concept drifts while the model is in production.
 
 * **Cloud Deployment:**
     * Deploy the MLflow server to a persistent cloud service (e.g., on an AWS EC2 instance with a managed database like RDS for the backend and S3 for artifacts).
