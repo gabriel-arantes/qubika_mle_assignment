@@ -55,18 +55,19 @@ In line with the assignment's encouragement to document assumptions and decision
 
 The project is organized into logical components, each with a single responsibility.
 
-├── app
-│   └── main.py                 # The FastAPI application. Loads the production model and exposes prediction endpoints.
-├── data
-│   └── dataset.csv             # The raw dataset used for training the model.
-├── scripts
-│   ├── init.py             # Makes the 'scripts' directory a Python package.
-│   ├── train.py                # The main training orchestrator. Parses arguments and uses factories to build and train a pipeline.
-│   ├── model_factory.py        # Abstract Factory for creating different ML model algorithms (e.g., LogisticRegression, RandomForest).
-│   └── preprocessing_factory.py# Abstract Factory for creating different data preprocessing pipelines (e.g., imputation, scaling).
-├── .dockerignore               # Specifies files and directories to exclude from the Docker build context.
-├── Dockerfile                  # The blueprint for building the production-ready inference API container.
-└── requirements.txt            # A list of all Python dependencies required for the project.
+
+├── app/
+│   └── main.py                   # The FastAPI application. Loads the production model and exposes prediction endpoints.
+├── data/
+│   └── dataset.csv               # The raw dataset used for training the model.
+├── scripts/
+│   ├── __init__.py               # Makes the 'scripts' directory a Python package.
+│   ├── train.py                  # The main training orchestrator. Parses arguments and uses factories to build and train a pipeline.
+│   ├── model_factory.py          # Abstract Factory for creating different ML model algorithms (e.g., LogisticRegression, RandomForest).
+│   └── preprocessing_factory.py  # Abstract Factory for creating different data preprocessing pipelines (e.g., imputation, scaling).
+├── .dockerignore                 # Specifies files and directories to exclude from the Docker build context.
+├── Dockerfile                    # The blueprint for building the production-ready inference API container.
+└── requirements.txt              # A list of all Python dependencies required for the project.
 
 ## 4. Complete Execution Workflow
 
