@@ -2,7 +2,7 @@
 
 ## 1. Project Objective and Final Outcome
 
-This project documents the complete process of elevating a basic Machine Learning proof-of-concept into a robust, production-grade prediction service. The initial task was to take a simple training script (`model.py`) developed by a teammate and make it ready for deployment. Given that the model is "crucial for the company's success," the focus was on creating a system that is reliable, scalable, maintainable, and available to serve predictions on demand.
+This project documents the complete process of elevating a basic Machine Learning proof-of-concept into a robust, production-grade prediction service (Interview Assignment from Qubika). The initial task was to take a simple training script (`model.py`) developed by a teammate and make it ready for deployment. Given that the model is "crucial for the company's success," the focus was on creating a system that is reliable, scalable, maintainable, and available to serve predictions on demand.
 
 The final system is a containerized REST API that serves a machine learning model for predicting loan approvals. The architecture is designed to be cloud-agnostic and incorporates MLOps best practices to manage the entire model lifecycle, from experimentation and versioning to deployment and serving.
 
