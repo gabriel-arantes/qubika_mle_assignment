@@ -1,4 +1,4 @@
-# Production-Ready Loan Approval Prediction Service - V2
+# Production-Ready Loan Approval Prediction Service
 
 ## 1. Project Objective and Final Outcome
 
